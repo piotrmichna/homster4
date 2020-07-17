@@ -19,7 +19,7 @@ function main(){
 
     while [ 1 ] ; do
         #start_test
-        weather_event
+        #weather_event
         prog_event
         #stop_test
         if [ $PR_ID -lt 0 ] ; then
