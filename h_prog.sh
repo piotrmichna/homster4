@@ -135,6 +135,7 @@ function run_prog() {
         if [ $PR_ITEM_LP -eq $n ] ; then #wywolanie dla kolejnych etapow programu
             if [ ${GP_DIR[${PR_ITEM_GPID[$n]}]} -eq 1 ] ; then
                 #instrukcje dla wyjscia
+                echo "item_ctn=${PR_ITEM_CNT[$n]} delay=${PR_ITEM_DELAY[$n]}"
                 if [ ${PR_ITEM_CNT[$n]} -lt ${PR_ITEM_DELAY[$n]} ] ; then
                     # wysterowanie wyjscia gdy cnt=0
                     if [ ${PR_ITEM_CNT[$n]} -eq 0 ] ; then
