@@ -212,7 +212,7 @@ function get_prog_item(){
 function begin_prog(){
     if [ $PR_ID -gt 0 ] ; then
         local tmp=$(echo "SELECT COUNT(1) FROM prog_item WHERE progid=$PR_ID" | mysql -D$DB -u $USER -p$PASS -N)
-        PR_ITEM_NUM=${tmp[0]}
+        PR_ITEM_NUM=${tmp}
         if [ $PR_ITEM_NUM -gt 0 ] ; then
             tmp=$(echo "SELECT nazwa FROM prog WHERE id=$PR_ID" | mysql -D$DB -u $USER -p$PASS -N)
             PR_NAZ=${tmp[0]}
@@ -255,8 +255,8 @@ function get_next_start(){
     log_sys "TIME - szukanie nastepnych uruchomień"
     local TNOW=$(date +"%T")
     local tmp=$(echo "SELECT COUNT(1) FROM start_time WHERE tim>'$TNOW' ORDER BY tim" | mysql -D$DB -u $USER -p$PASS -N)
-    PR_START_NUM=${tmp[0]}
-    if [ $PR_START_NUM="" ] ; then
+    PR_START_NUM=${tmp}
+    if [ -z $PR_START_NUM ] ; then
         PR_START_NUM=-1
     fi
     echo "ilosc startow $PR_START_NUM"
